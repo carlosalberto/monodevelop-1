@@ -118,7 +118,7 @@
     <Folder Include="MonoDevelop.IronPython.Parser\" />
     <Folder Include="MonoDevelop.IronPython.Resolver\" />
     <Folder Include="MonoDevelop.IronPython.Parser.Dom\" />
-    <Folder Include="..\..\..\..\..\..\home\carlos\MonoDevelop.IronPython.Project\PythonProjectParameters.cs\MonoDevelop.IronPython.Project\" />
+    <Folder Include="MonoDevelop.IronPython.Project\" />
     <Folder Include="IronLibs\" />
     <Folder Include="MonoDevelop.IronPython.Gui\" />
   </ItemGroup>

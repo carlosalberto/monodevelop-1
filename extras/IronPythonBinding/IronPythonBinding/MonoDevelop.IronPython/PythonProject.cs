@@ -28,6 +28,8 @@ using System.IO;
 using System.Xml;
 
 using MonoDevelop.Core;
+using MonoDevelop.Core.Execution;
+using MonoDevelop.Core.ProgressMonitoring;
 using MonoDevelop.Projects;
 
 namespace MonoDevelop.IronPython
@@ -50,6 +52,8 @@ namespace MonoDevelop.IronPython
 			}
 		
 			CreateDefaultConfigurations ();
+			foreach (PythonConfiguration configuration in Configurations)
+				configuration.OutputDirectory = BaseDirectory;
 		}
 				
 		public override string ProjectType {
@@ -76,12 +80,58 @@ namespace MonoDevelop.IronPython
 		
 		protected override bool OnGetCanExecute (ExecutionContext context, ConfigurationSelector configuration)
 		{
-			return false;
+			if (!IronManager.IsInterpreterPathValid ())
+				return false;
+			
+			var config = (PythonConfiguration) GetConfiguration (configuration);
+			var path = config.OutputDirectory.Combine (config.MainModule);
+			return !String.IsNullOrEmpty (config.MainModule) && IsFileInProject (path);
 		}
 		
 		protected override void DoExecute (IProgressMonitor monitor, ExecutionContext context, ConfigurationSelector configuration)
 		{
-			base.DoExecute (monitor, context, configuration);
+			var config = (PythonConfiguration) GetConfiguration (configuration);
+			IConsole console = config.ExternalConsole ?
+				context.ExternalConsoleFactory.CreateConsole (!config.PauseConsoleOutput) :
+				context.ConsoleFactory.CreateConsole (!config.PauseConsoleOutput);
+			
+			var aggregatedMonitor = new AggregatedOperationMonitor (monitor);
+			
+			try {
+				var executionCommand = CreateExecutionCommand (configuration, config);
+				if (!context.ExecutionHandler.CanExecute (executionCommand)) {
+					monitor.ReportError (GettextCatalog.GetString ("Cannot execute application. The selected execution mode " +
+						"is not supported for IronPython projects"), null);
+					return;
+				}
+				
+				var asyncOp = context.ExecutionHandler.Execute (executionCommand, console);
+				aggregatedMonitor.AddOperation (asyncOp);
+				asyncOp.WaitForCompleted ();
+				
+				monitor.Log.WriteLine ("The application exited with code: " + asyncOp.ExitCode);
+				
+			} catch (Exception exc) {
+				monitor.ReportError (GettextCatalog.GetString ("Cannot execute \"{0}\"", config.MainModule), exc);
+			} finally {
+				console.Dispose ();
+				aggregatedMonitor.Dispose ();
+			}
+		}
+		
+		// TODO - Research on the target runtime selection (if possible/doable/recommended).
+		protected virtual PythonExecutionCommand CreateExecutionCommand (ConfigurationSelector configSel, PythonConfiguration configuration)
+		{
+			var ironPath = (FilePath)PropertyService.Get<string> ("IronPython.InterpreterPath");
+			
+			var command = new PythonExecutionCommand (ironPath) {
+				Arguments = IronManager.GetInterpreterArguments (configuration),
+				WorkingDirectory = BaseDirectory,
+				EnvironmentVariables = configuration.GetParsedEnvironmentVariables (),
+				Configuration = configuration
+			};
+			
+			return command;
 		}
 		
 		void CreateDefaultConfigurations ()

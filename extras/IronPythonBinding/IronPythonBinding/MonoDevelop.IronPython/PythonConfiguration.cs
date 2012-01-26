@@ -42,8 +42,8 @@ namespace MonoDevelop.IronPython
 		[ItemProperty ("MainModule")]
 		string mainModule = String.Empty;
 		
-		[ItemProperty ("AdditionalArgs")]
-		string additionalArgs = String.Empty;
+		[ItemProperty ("InterpreterArgs")]
+		string interpreterArgs = String.Empty;
 		
 		[ItemProperty ("LangVersion", DefaultValue = LangVersion.Python27)]
 		LangVersion langVersion;
@@ -74,9 +74,9 @@ namespace MonoDevelop.IronPython
 			set { mainModule = value ?? String.Empty; }
 		}
 		
-		public string AdditionalArguments {
-			get { return additionalArgs; }
-			set { additionalArgs = value ?? String.Empty; }
+		public string InterpreterArguments {
+			get { return interpreterArgs; }
+			set { interpreterArgs = value ?? String.Empty; }
 		}
 		
 		public LangVersion LangVersion {
@@ -113,7 +113,7 @@ namespace MonoDevelop.IronPython
 			base.CopyFrom (config);
 			
 			mainModule = pyConfig.mainModule;
-			additionalArgs = pyConfig.additionalArgs;
+			interpreterArgs = pyConfig.interpreterArgs;
 			langVersion = pyConfig.langVersion;
 			optimize = pyConfig.optimize;
 			showExceptionDetails = pyConfig.showExceptionDetails;

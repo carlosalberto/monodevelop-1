@@ -57,6 +57,14 @@
     <Reference Include="Microsoft.Scripting">
       <HintPath>IronLibs\Microsoft.Scripting.dll</HintPath>
     </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="Mono.Posix" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -82,6 +90,11 @@
     <Compile Include="MonoDevelop.IronPython\PythonConfiguration.cs" />
     <Compile Include="MonoDevelop.IronPython\PythonProject.cs" />
     <Compile Include="MonoDevelop.IronPython\PythonProjectBinding.cs" />
+    <Compile Include="MonoDevelop.IronPython\PythonExecutionCommand.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="MonoDevelop.IronPython.Gui\MainPanel.cs" />
+    <Compile Include="gtk-gui\MonoDevelop.IronPython.Gui.MainPanel.cs" />
+    <Compile Include="MonoDevelop.IronPython\IronManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -94,6 +107,9 @@
     <EmbeddedResource Include="templates\EmptyIronPythonProject.xpt.xml">
       <LogicalName>EmptyIronPythonProject.xpt.xml</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="templates\" />
@@ -101,10 +117,10 @@
     <Folder Include="MonoDevelop.IronPython.Formatting\" />
     <Folder Include="MonoDevelop.IronPython.Parser\" />
     <Folder Include="MonoDevelop.IronPython.Resolver\" />
-    <Folder Include="..\..\..\..\..\..\home\carlos\MonoDevelop.IronPython.Completion\PythonEditorCompletion.cs\MonoDevelop.IronPython.Completion\" />
     <Folder Include="MonoDevelop.IronPython.Parser.Dom\" />
     <Folder Include="..\..\..\..\..\..\home\carlos\MonoDevelop.IronPython.Project\PythonProjectParameters.cs\MonoDevelop.IronPython.Project\" />
     <Folder Include="IronLibs\" />
+    <Folder Include="MonoDevelop.IronPython.Gui\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="IronLibs\IronPython.dll" />

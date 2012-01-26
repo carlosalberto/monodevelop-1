@@ -110,6 +110,9 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="templates\ConsoleIronPythonProject.xpt.xml">
+      <LogicalName>ConsoleIronPythonProject.xpt.xml</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="templates\" />

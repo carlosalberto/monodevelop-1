@@ -256,7 +256,7 @@ namespace MonoDevelop.IronPython.Parser
 
 		static DomRegion GetDomRegion (Node node)
 		{
-			return new DomRegion (node.StartIndex, node.EndIndex);
+			return new DomRegion (node.Start.Line, node.End.Line);
 		}
 	}
 }

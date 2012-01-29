@@ -114,10 +114,10 @@ namespace MonoDevelop.IronPython.Completion
 			var inFrom = triggerLine.StartsWith ("from ");
 			var inClass = triggerLine.StartsWith ("class ") || (triggerLine.StartsWith ("class") && completionChar == ' ');
 			var inDef = triggerLine.StartsWith ("def ") || (triggerLine.StartsWith ("def") && completionChar == ' ');
-			var parts = triggerLine.Split (' ');
+			var parts = triggerLine.Split (new char [] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 			
 			// "from blah "
-			if (inFrom && parts.Length == 2 && parts [parts.Length-1].Trim ().Length > 0 && completionChar == ' ') {
+			if (inFrom && parts.Length == 2 && completionChar == ' ') {
 				return new CompletionDataList (new CompletionData[] { new CompletionData ("import") });
 			}
 			// "from blah import "

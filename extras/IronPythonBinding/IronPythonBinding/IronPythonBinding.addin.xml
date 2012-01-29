@@ -53,6 +53,7 @@
 	
 	<Extension path = "/MonoDevelop/Ide/TextEditorExtensions">
 		<Class fileExtension = ".py" class = "MonoDevelop.IronPython.Formatting.PythonEditorIndentation" />
+		<Class fileExtension = ".py" class = "MonoDevelop.IronPython.Completion.PythonTextEditorCompletion" />
 	</Extension>
 	
 	<Extension path = "/MonoDevelop/ProjectModel/DomParser">

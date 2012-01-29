@@ -65,6 +65,8 @@
       <Private>False</Private>
       <Package>gtk-sharp-2.0</Package>
     </Reference>
+    <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -95,6 +97,10 @@
     <Compile Include="MonoDevelop.IronPython.Gui\MainPanel.cs" />
     <Compile Include="gtk-gui\MonoDevelop.IronPython.Gui.MainPanel.cs" />
     <Compile Include="MonoDevelop.IronPython\IronManager.cs" />
+    <Compile Include="MonoDevelop.IronPython.Completion\PythonEditorCompletion.cs" />
+    <Compile Include="MonoDevelop.IronPython.Completion\PythonSite.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser\ParserDatabase.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser\ParserItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -113,6 +119,9 @@
     <EmbeddedResource Include="templates\ConsoleIronPythonProject.xpt.xml">
       <LogicalName>ConsoleIronPythonProject.xpt.xml</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schema.sql">
+      <LogicalName>Schema.sql</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="templates\" />
@@ -124,6 +133,7 @@
     <Folder Include="MonoDevelop.IronPython.Project\" />
     <Folder Include="IronLibs\" />
     <Folder Include="MonoDevelop.IronPython.Gui\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="IronLibs\IronPython.dll" />

@@ -60,6 +60,16 @@
 		<Parser class = "MonoDevelop.IronPython.Parser.PythonParser" fileExtensions = ".py" />
 	</Extension>
 	
+	<Extension path = "/MonoDevelop/ProjectModel/Gui/ItemOptionPanels/Run">
+		<Condition id="ItemType" value="MonoDevelop.IronPython.PythonProject">
+			<Section
+				id          = "IronPythonOptionsPanel"
+	            _label      = "IronPython"
+	            insertafter = "General"
+	            class       = "MonoDevelop.IronPython.Gui.OptionsPanel"/>
+		</Condition>
+	</Extension>
+	
 	<Extension path = "/MonoDevelop/Ide/GlobalOptionsDialog/Other">
 		<Section id = "IronPythonMainPanel"
 				_label = "IronPython"

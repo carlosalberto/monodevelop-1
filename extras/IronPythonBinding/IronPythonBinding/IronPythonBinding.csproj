@@ -101,6 +101,8 @@
     <Compile Include="MonoDevelop.IronPython.Completion\PythonSite.cs" />
     <Compile Include="MonoDevelop.IronPython.Parser\ParserDatabase.cs" />
     <Compile Include="MonoDevelop.IronPython.Parser\ParserItem.cs" />
+    <Compile Include="MonoDevelop.IronPython.Gui\OptionsWidget.cs" />
+    <Compile Include="gtk-gui\MonoDevelop.IronPython.Gui.OptionsWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

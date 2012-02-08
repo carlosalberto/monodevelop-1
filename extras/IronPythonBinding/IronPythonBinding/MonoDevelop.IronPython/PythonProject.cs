@@ -53,7 +53,7 @@ namespace MonoDevelop.IronPython
 		
 			CreateDefaultConfigurations ();
 			foreach (PythonConfiguration configuration in Configurations)
-				configuration.OutputDirectory = BaseDirectory;
+				configuration.OutputDirectory = info.ProjectBasePath;
 		}
 				
 		public override string ProjectType {

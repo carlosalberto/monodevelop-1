@@ -39,14 +39,14 @@ namespace MonoDevelop.IronPython
 	
 	public class PythonConfiguration : ProjectConfiguration
 	{
-		[ItemProperty ("MainModule")]
-		string mainModule = String.Empty;
+		[ItemProperty ("MainModule", DefaultValue = "main")]
+		string mainModule = "main";
 		
 		[ItemProperty ("InterpreterArgs")]
 		string interpreterArgs = String.Empty;
 		
 		[ItemProperty ("LangVersion", DefaultValue = LangVersion.Python27)]
-		LangVersion langVersion;
+		LangVersion langVersion = LangVersion.Python27;
 		
 		[ItemProperty ("ShowExceptionDetails")]
 		bool showExceptionDetails;

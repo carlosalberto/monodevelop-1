@@ -8,9 +8,13 @@
 		<_Description>Creates a console IronPython project.</_Description>
 	</TemplateConfiguration>
 	
+	<Actions>
+		<Open filename = "main.py" />
+	</Actions>
+	
 	<Combine name = "${ProjectName}" directory = ".">
 		<Project name = "${ProjectName}" directory = "." type = "IronPython">			
-			<Options ExternalConsole = "True" MainModule = "main.py" />
+			<Options ExternalConsole = "True" MainModule = "main" />
 			<Files>
 				<File name = "main.py"><![CDATA[
 import clr

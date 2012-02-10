@@ -56,6 +56,27 @@ namespace MonoDevelop.IronPython.Gui
 			set { moduleEntry.Text = value ?? String.Empty; }
 		}
 		
+		public LangVersion LangVersion {
+			get {
+				switch (versionComboBox.Active) {
+				case 0: return LangVersion.Python27;
+				case 1: return LangVersion.Python30;
+				}
+				
+				return LangVersion.Python27; // fallback
+			}
+			set {
+				switch (value) {
+				case LangVersion.Python27:
+					versionComboBox.Active = 0;
+					break;
+				case LangVersion.Python30:
+					versionComboBox.Active = 1;
+					break;
+				}
+			}
+		}
+		
 		public bool Optimize {
 			get { return optimizeCheck.Active; }
 			set { optimizeCheck.Active = value; }
@@ -92,6 +113,7 @@ namespace MonoDevelop.IronPython.Gui
 			var config = CurrentConfiguration as PythonConfiguration;
 			
 			widget.DefaultModule = config.MainModule;
+			widget.LangVersion = config.LangVersion;
 			widget.Optimize = config.Optimize;
 			widget.ShowClrExceptions = config.ShowClrExceptions;
 			widget.ShowExceptionDetail = config.ShowExceptionDetails;
@@ -103,6 +125,7 @@ namespace MonoDevelop.IronPython.Gui
 			var config = CurrentConfiguration as PythonConfiguration;
 			
 			config.MainModule = widget.DefaultModule;
+			config.LangVersion = widget.LangVersion;
 			config.Optimize = widget.Optimize;
 			config.ShowClrExceptions = widget.ShowClrExceptions;
 			config.ShowExceptionDetails = widget.ShowExceptionDetail;

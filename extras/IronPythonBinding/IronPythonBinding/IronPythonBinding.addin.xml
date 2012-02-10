@@ -26,6 +26,7 @@
 	<Extension path = "/MonoDevelop/Ide/ProjectTemplates">
 		<ProjectTemplate id = "EmptyIronPythonProject" resource = "EmptyIronPythonProject.xpt.xml" />
 		<ProjectTemplate id = "ConsoleIronPythonProject" resource = "ConsoleIronPythonProject.xpt.xml" />
+		<ProjectTemplate id = "ConsoleIronPythonProject" resource = "GtkIronPythonProject.xpt.xml" />
 	</Extension>
 	
 	<Extension path = "/MonoDevelop/Ide/FileFilters">

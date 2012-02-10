@@ -124,6 +124,9 @@
     <EmbeddedResource Include="Resources\Schema.sql">
       <LogicalName>Schema.sql</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="templates\GtkIronPythonProject.xpt.xml">
+      <LogicalName>GtkIronPythonProject.xpt.xml</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="templates\" />

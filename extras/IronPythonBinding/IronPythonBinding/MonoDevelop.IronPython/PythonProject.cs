@@ -84,7 +84,7 @@ namespace MonoDevelop.IronPython
 				return false;
 			
 			var config = (PythonConfiguration) GetConfiguration (configuration);
-			var path = config.OutputDirectory.Combine (config.MainModule);
+			var path = config.OutputDirectory.Combine (config.MainModule).ChangeExtension ("py");
 			return !String.IsNullOrEmpty (config.MainModule) && IsFileInProject (path);
 		}
 		
@@ -143,7 +143,8 @@ namespace MonoDevelop.IronPython
 			debugConfig.WarnInconsistentTabbing = true;
 			Configurations.Add (debugConfig);
 			
-			var releaseConfig = CreateConfiguration ("Release");
+			var releaseConfig = CreateConfiguration ("Release") as PythonConfiguration;
+			releaseConfig.Optimize = true;
 			Configurations.Add (releaseConfig);
 		}
 	}

@@ -51,6 +51,7 @@ namespace MonoDevelop.IronPython.Gui
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.ironFileEntry = new global::MonoDevelop.Components.FileEntry ();
 			this.ironFileEntry.Name = "ironFileEntry";
+			this.ironFileEntry.BrowserTitle = "Specify the interpreter to use";
 			this.hbox1.Add (this.ironFileEntry);
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.ironFileEntry]));
 			w3.Position = 1;

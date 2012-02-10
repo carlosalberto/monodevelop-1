@@ -48,6 +48,7 @@
             <child>
               <widget class="MonoDevelop.Components.FileEntry" id="ironFileEntry">
                 <property name="MemberName" />
+                <property name="BrowserTitle">Specify the interpreter to use</property>
               </widget>
               <packing>
                 <property name="Position">1</property>

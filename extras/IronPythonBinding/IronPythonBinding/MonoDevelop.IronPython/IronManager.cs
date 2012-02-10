@@ -107,6 +107,7 @@ namespace MonoDevelop.IronPython
 				throw new ArgumentNullException ("configuration");
 			
 			var args = new ProcessArgumentBuilder ();
+			args.Add ("-m");
 			args.AddQuoted (config.MainModule);
 			args.Add ("-u");
 			

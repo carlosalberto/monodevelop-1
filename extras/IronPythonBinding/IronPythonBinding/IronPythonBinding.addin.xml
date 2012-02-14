@@ -13,12 +13,6 @@
 		<Addin id = "Ide" version = "2.8.2" />	
 	</Dependencies>
 		
-	<Extension path = "/MonoDevelop/ProjectModel/MSBuildItemTypes">
-		<SolutionItem type = "MonoDevelop.IronPython.PythonProject"
-				extension = "ipproj"
-				guid = "{32e7b63e-a262-4c5e-a7f1-507d30b7ee1d}" />
-	</Extension>
-	
 	<Extension path = "/MonoDevelop/Ide/FileTemplates">
 		<FileTemplate id = "EmptyIronPythonFile" resource = "EmptyIronPythonFile.xft.xml" />
 	</Extension>

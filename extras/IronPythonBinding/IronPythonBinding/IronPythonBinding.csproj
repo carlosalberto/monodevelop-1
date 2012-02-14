@@ -127,6 +127,9 @@
     <EmbeddedResource Include="templates\GtkIronPythonProject.xpt.xml">
       <LogicalName>GtkIronPythonProject.xpt.xml</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\py-icon-32.png">
+      <LogicalName>py-icon-32.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="templates\" />

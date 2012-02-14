@@ -3,7 +3,7 @@
 	<TemplateConfiguration>
 		<_Name>Gtk+ Project</_Name>
 		<_Category>IronPython</_Category>
-		<Icon></Icon>
+		<Icon>md-project|res:py-icon-32.png</Icon>
 		<LanguageName>IronPython</LanguageName>
 		<_Description>Creates a Gtk+ IronPython project.</_Description>
 	</TemplateConfiguration>

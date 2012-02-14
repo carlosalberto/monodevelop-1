@@ -139,13 +139,7 @@
     <Folder Include="MonoDevelop.IronPython.Resolver\" />
     <Folder Include="MonoDevelop.IronPython.Parser.Dom\" />
     <Folder Include="MonoDevelop.IronPython.Project\" />
-    <Folder Include="IronLibs\" />
     <Folder Include="MonoDevelop.IronPython.Gui\" />
     <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="IronLibs\IronPython.dll" />
-    <None Include="IronLibs\Microsoft.Dynamic.dll" />
-    <None Include="IronLibs\Microsoft.Scripting.dll" />
   </ItemGroup>
 </Project>

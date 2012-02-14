@@ -3,7 +3,7 @@
 <Template originator = "Carlos Alberto Cortez" Language = "IronPython">
 	<TemplateConfiguration>
 		<_Name>Empty IronPython file</_Name>
-		<Icon>md-text-file-icon</Icon>
+		<Icon>res:py-icon-32.png</Icon>
 		<_Category>IronPython</_Category>
 		<ProjectType>IronPython</ProjectType>
 		<_Description>Creates an empty IronPython file.</_Description>

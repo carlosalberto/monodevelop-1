@@ -18,6 +18,14 @@ namespace MonoDevelop.IronPython.Gui
 		private global::Gtk.CheckButton showExcDetailCheck;
 		private global::Gtk.ComboBox versionComboBox;
 		private global::Gtk.CheckButton warnInconsistentTabCheck;
+		private global::Gtk.Label label5;
+		private global::Gtk.Alignment alignment2;
+		private global::Gtk.HBox hbox1;
+		private global::Gtk.ScrolledWindow scrolledwindow1;
+		private global::Gtk.TreeView pathsTreeview;
+		private global::Gtk.VBox vbox2;
+		private global::Gtk.Button pathsAddButton;
+		private global::Gtk.Button pathsRemoveButton;
 		
 		protected virtual void Build ()
 		{
@@ -177,11 +185,85 @@ namespace MonoDevelop.IronPython.Gui
 			w13.Position = 1;
 			w13.Expand = false;
 			w13.Fill = false;
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.label5 = new global::Gtk.Label ();
+			this.label5.Name = "label5";
+			this.label5.Xalign = 0F;
+			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Module/Assembly Paths</b>");
+			this.label5.UseMarkup = true;
+			this.vbox1.Add (this.label5);
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.label5]));
+			w14.Position = 2;
+			w14.Expand = false;
+			w14.Fill = false;
+			w14.Padding = ((uint)(6));
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.alignment2 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment2.Name = "alignment2";
+			this.alignment2.LeftPadding = ((uint)(12));
+			// Container child alignment2.Gtk.Container+ContainerChild
+			this.hbox1 = new global::Gtk.HBox ();
+			this.hbox1.Name = "hbox1";
+			this.hbox1.Spacing = 6;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.scrolledwindow1 = new global::Gtk.ScrolledWindow ();
+			this.scrolledwindow1.CanFocus = true;
+			this.scrolledwindow1.Name = "scrolledwindow1";
+			this.scrolledwindow1.ShadowType = ((global::Gtk.ShadowType)(1));
+			// Container child scrolledwindow1.Gtk.Container+ContainerChild
+			this.pathsTreeview = new global::Gtk.TreeView ();
+			this.pathsTreeview.CanFocus = true;
+			this.pathsTreeview.Name = "pathsTreeview";
+			this.pathsTreeview.HeadersVisible = false;
+			this.scrolledwindow1.Add (this.pathsTreeview);
+			this.hbox1.Add (this.scrolledwindow1);
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.scrolledwindow1]));
+			w16.Position = 0;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.vbox2 = new global::Gtk.VBox ();
+			this.vbox2.Name = "vbox2";
+			this.vbox2.Spacing = 6;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.pathsAddButton = new global::Gtk.Button ();
+			this.pathsAddButton.CanFocus = true;
+			this.pathsAddButton.Name = "pathsAddButton";
+			this.pathsAddButton.UseStock = true;
+			this.pathsAddButton.UseUnderline = true;
+			this.pathsAddButton.Label = "gtk-add";
+			this.vbox2.Add (this.pathsAddButton);
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.pathsAddButton]));
+			w17.Position = 0;
+			w17.Expand = false;
+			w17.Fill = false;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.pathsRemoveButton = new global::Gtk.Button ();
+			this.pathsRemoveButton.Sensitive = false;
+			this.pathsRemoveButton.CanFocus = true;
+			this.pathsRemoveButton.Name = "pathsRemoveButton";
+			this.pathsRemoveButton.UseStock = true;
+			this.pathsRemoveButton.UseUnderline = true;
+			this.pathsRemoveButton.Label = "gtk-remove";
+			this.vbox2.Add (this.pathsRemoveButton);
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.pathsRemoveButton]));
+			w18.Position = 1;
+			w18.Expand = false;
+			w18.Fill = false;
+			this.hbox1.Add (this.vbox2);
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox2]));
+			w19.Position = 1;
+			w19.Expand = false;
+			w19.Fill = false;
+			this.alignment2.Add (this.hbox1);
+			this.vbox1.Add (this.alignment2);
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.alignment2]));
+			w21.Position = 3;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.pathsAddButton.Clicked += new global::System.EventHandler (this.pathsAddButtonClickHandler);
+			this.pathsRemoveButton.Clicked += new global::System.EventHandler (this.pathsRemoveButtonClickHandler);
 		}
 	}
 }

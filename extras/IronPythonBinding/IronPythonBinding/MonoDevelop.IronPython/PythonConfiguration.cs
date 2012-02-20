@@ -45,6 +45,9 @@ namespace MonoDevelop.IronPython
 		[ItemProperty ("InterpreterArgs")]
 		string interpreterArgs = String.Empty;
 		
+		[ItemProperty ("ExtraPaths")]
+		string extraPaths = String.Empty;
+		
 		[ItemProperty ("LangVersion", DefaultValue = LangVersion.Python27)]
 		LangVersion langVersion = LangVersion.Python27;
 		
@@ -84,6 +87,11 @@ namespace MonoDevelop.IronPython
 			set { langVersion = value; }
 		}
 		
+		public string ExtraPaths {
+			get { return extraPaths; }
+			set { extraPaths = value ?? String.Empty; }
+		}
+		
 		public bool ShowExceptionDetails {
 			get { return showExceptionDetails; }
 			set { showExceptionDetails = value; }
@@ -113,6 +121,7 @@ namespace MonoDevelop.IronPython
 			base.CopyFrom (config);
 			
 			mainModule = pyConfig.mainModule;
+			extraPaths = pyConfig.ExtraPaths;
 			interpreterArgs = pyConfig.interpreterArgs;
 			langVersion = pyConfig.langVersion;
 			optimize = pyConfig.optimize;

@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Text;
 using Gtk;
 
 using MonoDevelop.Core;
@@ -38,6 +39,7 @@ namespace MonoDevelop.IronPython.Gui
 	public partial class OptionsWidget : Gtk.Bin
 	{
 		ListStore versionsStore;
+		ListStore pathsStore;
 		
 		public OptionsWidget ()
 		{
@@ -47,6 +49,17 @@ namespace MonoDevelop.IronPython.Gui
 			versionsStore.AppendValues ("2.7", LangVersion.Python27);
 			versionsStore.AppendValues ("3.0", LangVersion.Python30);
 			versionComboBox.Model = versionsStore;
+			
+			pathsStore = new ListStore (typeof (string));
+			pathsTreeview.Model = pathsStore;
+			var column = new TreeViewColumn ();
+			var cell = new CellRendererText ();
+			column.PackStart (cell, true);
+			column.AddAttribute (cell, "text", 0);
+			pathsTreeview.AppendColumn (column);
+			pathsTreeview.Selection.Changed += delegate {
+				pathsRemoveButton.Sensitive = pathsTreeview.Selection.CountSelectedRows () > 0;
+			};
 			
 			Visible = true;
 		}
@@ -96,6 +109,56 @@ namespace MonoDevelop.IronPython.Gui
 			get { return warnInconsistentTabCheck.Active; }
 			set { warnInconsistentTabCheck.Active = value; }
 		}
+		
+		public string ExtraPaths {
+			get {
+				TreeIter iter;
+				if (!pathsStore.GetIterFirst (out iter))
+					return String.Empty;
+				
+				var sb = new StringBuilder ();
+				do {
+					if (sb.Length > 0)
+						sb.Append (System.IO.Path.PathSeparator);
+					
+					sb.Append ((string)pathsStore.GetValue (iter, 0));
+				} while (pathsStore.IterNext (ref iter));
+				
+				return sb.ToString ();
+			}
+			set {
+				pathsStore.Clear ();
+				if (String.IsNullOrEmpty (value))
+					return;
+				
+				var paths = value.Split (System.IO.Path.PathSeparator);
+				foreach (string path in paths)
+					pathsStore.AppendValues (path);
+			}
+		}
+		
+		void pathsAddButtonClickHandler (object o, EventArgs args)
+		{
+			var dialog = new FileChooserDialog ("Add path",
+					IdeApp.Workbench.RootWindow,
+					FileChooserAction.SelectFolder,
+					Gtk.Stock.Cancel, Gtk.ResponseType.Cancel,
+					Gtk.Stock.Open, Gtk.ResponseType.Ok);
+
+			if (dialog.Run () == (int)Gtk.ResponseType.Ok)
+				pathsStore.AppendValues (dialog.Filename);
+
+			dialog.Destroy ();
+		}
+		
+		void pathsRemoveButtonClickHandler (object o, EventArgs args)
+		{
+			TreeModel model;
+			TreeIter iter;
+
+			if (pathsTreeview.Selection.GetSelected (out model, out iter))
+				((ListStore)model).Remove (ref iter);
+		}
 	}
 	
 	public class OptionsPanel : MultiConfigItemOptionsPanel
@@ -113,6 +176,7 @@ namespace MonoDevelop.IronPython.Gui
 			var config = CurrentConfiguration as PythonConfiguration;
 			
 			widget.DefaultModule = config.MainModule;
+			widget.ExtraPaths = config.ExtraPaths;
 			widget.LangVersion = config.LangVersion;
 			widget.Optimize = config.Optimize;
 			widget.ShowClrExceptions = config.ShowClrExceptions;
@@ -125,6 +189,7 @@ namespace MonoDevelop.IronPython.Gui
 			var config = CurrentConfiguration as PythonConfiguration;
 			
 			config.MainModule = widget.DefaultModule;
+			config.ExtraPaths = widget.ExtraPaths;
 			config.LangVersion = widget.LangVersion;
 			config.Optimize = widget.Optimize;
 			config.ShowClrExceptions = widget.ShowClrExceptions;

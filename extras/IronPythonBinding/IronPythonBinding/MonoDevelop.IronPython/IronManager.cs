@@ -35,6 +35,8 @@ namespace MonoDevelop.IronPython
 {
 	public static class IronManager
 	{
+		public const string ExtraPathsEnvironmentVariable = "IRONPYTHONPATH";
+		
 		public static string GetInterpreterPath ()
 		{
 			return PropertyService.Get<string> ("IronPython.InterpreterPath");

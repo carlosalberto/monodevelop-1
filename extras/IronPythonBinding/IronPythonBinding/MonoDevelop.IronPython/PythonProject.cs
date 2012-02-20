@@ -131,6 +131,9 @@ namespace MonoDevelop.IronPython
 				Configuration = configuration
 			};
 			
+			if (!String.IsNullOrEmpty (configuration.ExtraPaths))
+				command.EnvironmentVariables [IronManager.ExtraPathsEnvironmentVariable] = configuration.ExtraPaths;
+			
 			return command;
 		}
 		
